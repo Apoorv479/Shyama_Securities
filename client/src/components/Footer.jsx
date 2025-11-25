@@ -160,7 +160,7 @@ const Footer = () => {
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-[#1a9bb9] shrink-0" />
                 <a
-                  href="tel:+918368686070"
+                  href="tel:+91-7982668153"
                   className="text-[#cbd5e1] hover:text-[#1a9bb9] transition-colors text-base"
                 >
                   +91-7982668153
@@ -169,8 +169,8 @@ const Footer = () => {
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-[#1a9bb9] shrink-0" />
                 <a
-                  href="mailto:info@company.com"
-                  className="text-[#cbd5e1] hover:text-[#1a9bb9] transition-colors text-base"
+                  href="mailto:info.shyamamanpowersolution1@gmail.com"
+                  className="text-[#cbd5e1] hover:text-[#1a9bb9] transition-colors text-base break-all"
                 >
                 info.shyamamanpowersolution1@gmail.com
                 </a>

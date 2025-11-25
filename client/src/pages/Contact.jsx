@@ -319,7 +319,7 @@ const Contact = () => {
 
                   {/* Phone */}
                   <motion.a
-                    href="tel:+917982668153"
+                    href="tel:+91-7982668153"
                     whileHover={{ x: 5 }}
                     className="flex items-start gap-4 group cursor-pointer"
                   >
@@ -336,7 +336,7 @@ const Contact = () => {
 
                   {/* Email */}
                   <motion.a
-                    href="mailto:info@company.com"
+                    href="mailto:info.shyamamanpowersolution1@gmail.com"
                     whileHover={{ x: 5 }}
                     className="flex items-start gap-4 group cursor-pointer"
                   >
@@ -345,7 +345,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-800 mb-1">Email</h3>
-                      <p className="text-gray-600 text-sm md:text-base group-hover:text-[#1a9bb9] transition-colors">
+                      <p className="text-gray-600 text-sm md:text-base group-hover:text-[#1a9bb9] transition-colors break-all">
                        info.shyamamanpowersolution1@gmail.com
                       </p>
                     </div>

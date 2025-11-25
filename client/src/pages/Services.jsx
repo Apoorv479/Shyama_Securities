@@ -171,7 +171,7 @@ export default function Services() {
                 Get a Free Quote
               </Link>
               <a
-                href="tel:+911234567890"
+                href="tel:+91-7982668153"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold bg-white text-[#0b3d64] border-2 border-[#e6f6fa] hover:border-[#1a9bb9] hover:bg-[#f8feff] transition-all active:scale-95"
               >
                 <Phone size={18} className="text-[#1a9bb9]" /> Call Us Now

@@ -128,14 +128,14 @@ const Bouncer = () => {
 
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <a
-                  href="tel:+911234567890"
+                  href="tel:+91-7982668153"
                   className={`inline-flex items-center gap-3 px-5 py-3 rounded-2xl font-medium ${accentBg} ${accentBgHover} text-white shadow-lg`}
                 >
                   <Phone size={18} /> Call Now
                 </a>
 
                 <a
-                  href="mailto:info@shyama-securities.com?subject=Bouncer%20Service%20Inquiry"
+                  href="mailto:info.shyamamanpowersolution1@gmail.com?subject=Bouncer%20Service%20Inquiry"
                   className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl font-medium bg-white text-[#0b3d64] hover:bg-white/90 shadow"
                 >
                   <Mail size={18} /> Email Us
@@ -313,17 +313,17 @@ const Bouncer = () => {
 
                 <div className="mt-6 space-y-3">
                   <a
-                    href="tel:+911234567890"
+                    href="tel:+91-7982668153"
                     className=" w-full text-left inline-flex items-center gap-3 px-4 py-3 rounded-lg border border-[#e6f6fa] bg-white text-[#0b3d64] font-medium hover:bg-[#f8feff]"
                   >
-                    <Phone size={16} /> +91 12345 67890
+                    <Phone size={16} /> +91-7982668153
                   </a>
 
                   <a
-                    href="mailto:info@shyama-securities.com?subject=Bouncer%20Service%20Inquiry"
+                    href="mailto:info.shyamamanpowersolution1@gmail.com?subject=Bouncer%20Service%20Inquiry"
                     className=" w-full text-left inline-flex items-center gap-3 px-4 py-3 rounded-lg border border-[#e6f6fa] bg-white text-[#0b3d64] font-medium hover:bg-[#f8feff]"
                   >
-                    <Mail size={16} /> info@shyama-securities.com
+                    <Mail size={16} /> <span className="break-all">info.shyamamanpowersolution1@gmail.com</span>
                   </a>
                 </div>
 
@@ -405,7 +405,7 @@ const Bouncer = () => {
 
             <div className="flex gap-3">
               <a
-                href="tel:+911234567890"
+                href="tel:+91-7982668153"
                 className={`inline-flex items-center gap-2 px-5 py-3 rounded-2xl font-medium ${accentBg} ${accentBgHover} text-white`}
               >
                 <Phone size={16} /> Call Now
