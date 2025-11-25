@@ -7,7 +7,7 @@ import JobRolesShowcase from "../components/illustrations/JobRolesShowcase";
 import HiringBenefitsIllustration from "../components/illustrations/HiringBenefitsIllustration";
 import ResumeUploadIllustration from "../components/illustrations/ResumeUploadIllustration";
 
-const GOOGLE_FORM_URL = "https://forms.gle/Zy6tjPPakA3UMwEm6"; 
+const GOOGLE_FORM_URL = "https://forms.gle/PjzMaePEA5Quo8fX6"; 
 
 
 const Career = () => {
