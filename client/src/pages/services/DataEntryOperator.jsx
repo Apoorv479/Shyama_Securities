@@ -1,0 +1,415 @@
+// src/pages/services/DataEntryOperator.jsx
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Phone, Mail, ArrowLeft, Check, Database, Scan, CheckSquare } from "lucide-react"; // Added new icons for workflow
+import Footer from "../../components/Footer";
+
+// --- IMAGES ARE NOW IMPORTED LOCALLY ---
+// Keeping same hero image as requested
+import Hero from "../../assets/operator.jpg"; 
+
+// Client Logos
+import zeptoLogo from "../../assets/client3.png";
+import blinkitLogo from "../../assets/client1.png";
+import rkGroupLogo from "../../assets/client4.jpg";
+import tataMotorsLogo from "../../assets/client5.jpg";
+// ----------------------------------------
+
+const SmartImage = ({ sources = [], alt = "", className = "", style = {} }) => {
+  const [idx, setIdx] = useState(0);
+
+  // When an image fails, advance to next source
+  const handleError = () => {
+    if (idx < sources.length - 1) setIdx((s) => s + 1);
+    else setIdx(sources.length); // mark as no more sources
+  };
+
+  // If out of sources, render inline SVG placeholder that fits the same space
+  if (idx >= sources.length) {
+    return (
+      <div
+        role="img"
+        aria-label={alt}
+        className={`flex items-center justify-center bg-gray-100 ${className}`}
+        style={{ ...style, minHeight: 160 }}
+      >
+        <svg width="140" height="100" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <rect width="140" height="100" rx="10" fill="#E9F9FB"/>
+          <g transform="translate(12,10)" fill="#0b3d64" opacity="0.9">
+            <rect x="0" y="48" width="116" height="8" rx="2" />
+            <rect x="0" y="30" width="72" height="8" rx="2" />
+            <circle cx="94" cy="24" r="14" />
+          </g>
+        </svg>
+      </div>
+    );
+  }
+
+  return (
+    // `crossOrigin` is no longer needed for local images
+    <img
+      src={sources[idx]}
+      alt={alt}
+      onError={handleError}
+      className={className}
+      style={style}
+      loading="lazy"
+    />
+  );
+};
+
+const DataEntryOperator = () => {
+  const primary = "text-[#0b3d64]";
+  const accentBg = "bg-[#1a9bb9]";
+  const accentBgHover = "hover:bg-[#15849b]";
+  const gradient = "bg-gradient-to-r from-[#0b3d64] to-[#084057]";
+
+  // --- 1. HERO IMAGE UPDATED ---
+  // Now uses the locally imported bouncerHero image
+  const heroSources = [Hero];
+  // ------------------------------
+
+  // --- 2. LOGOS UPDATED ---
+  // Now uses the locally imported logo variables
+  const trustedLogos = [
+    { 
+      src: zeptoLogo, 
+      alt: 'Zepto Logo' 
+    },
+    { 
+      src: blinkitLogo, 
+      alt: 'Blinkit Logo' 
+    },
+    { 
+      src: rkGroupLogo, 
+      alt: 'RK Group Logo' 
+    },
+    { 
+      src: tataMotorsLogo, 
+      alt: 'Tata Motors Logo' 
+    }
+  ];
+  // -------------------------
+
+  const container = {
+    hidden: { opacity: 0, y: 12 },
+    show: { opacity: 1, y: 0, transition: { staggerChildren: 0.08 } },
+  };
+  const item = { hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } };
+
+  return (
+    <>
+      {/* --- FIX APPLIED HERE ---
+        Added 'pt-20' (5rem / 80px) to push the content down and
+        prevent the fixed navbar from overlapping the hero section.
+        Adjust this value (e.g., pt-16, pt-24) to match your navbar's height.
+      */}
+      <div className="min-h-screen flex flex-col pt-20">
+        {/* Hero */}
+        <header className={`${gradient} text-white`}>
+          <div className="max-w-6xl mx-auto px-6 py-16 md:py-24 flex flex-col lg:flex-row items-center gap-10">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="w-full lg:w-1/2"
+            >
+              <p className="inline-block py-1 px-3 rounded-full bg-white/10 text-sm font-medium">
+                Accurate Data Entry Services
+              </p>
+
+              <h1 className="mt-6 text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
+                Accurate Data Entry and Processing Services
+              </h1>
+
+              <p className="mt-4 text-white/90 max-w-xl">
+                Reliable, trained, and detail-oriented data entry operators to manage your data, ensure accuracy, and handle large volumes of information. Trusted by businesses for fast, secure, and confidential data processing and digitization.
+              </p>
+
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                <a
+                  href="tel:+911234567890"
+                  className={`inline-flex items-center gap-3 px-5 py-3 rounded-2xl font-medium ${accentBg} ${accentBgHover} text-white shadow-lg`}
+                >
+                  <Phone size={18} /> Call Now
+                </a>
+
+                <a
+                  href="mailto:info@shyama-securities.com?subject=Data%20Entry%20Service%20Inquiry"
+                  className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl font-medium bg-white text-[#0b3d64] hover:bg-white/90 shadow"
+                >
+                  <Mail size={18} /> Email Us
+                </a>
+              </div>
+
+              <div className="mt-6 text-sm text-white/80">
+                <span className="font-semibold">Available:</span> Flexible hours · Project-based or Full-time
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="w-full lg:w-1/2"
+            >
+              <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/5">
+                <SmartImage
+                  sources={heroSources}
+                  alt="Data entry operator working on a computer"
+                  className="w-full h-64 md:h-80 lg:h-[380px] object-cover"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </header>
+
+        {/* Main content */}
+        <main className="flex-1 max-w-6xl mx-auto px-6 py-12">
+          <motion.div variants={container} initial="hidden" animate="show">
+            {/* Top navigation back */}
+            <motion.div variants={item} className="mb-6">
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 text-sm text-[#0b3d64] hover:underline"
+              >
+                <ArrowLeft size={16} /> Back to Services
+              </Link>
+            </motion.div>
+
+            {/* Overview + Key services */}
+            <motion.section
+              variants={item}
+              className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start"
+            >
+              <div className="lg:col-span-2">
+                <h2 className="text-2xl font-bold text-[#0b3d64]">
+                  Data Entry Services — What We Offer
+                </h2>
+                <p className="mt-4 text-gray-700 max-w-prose">
+                  Our professionally trained data entry operators ensure high-quality, accurate data management. We handle everything from simple data input to complex data processing, digitization, and cleaning. Each team member is vetted for typing speed, accuracy, and data confidentiality.
+                </p>
+
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="p-5 rounded-xl border border-[#e6f6fa] shadow-sm">
+                    <h3 className="font-semibold text-[#0b3d64]">High-Volume Data Entry</h3>
+                    <p className="mt-2 text-gray-600 text-sm">
+                      Accurate and rapid entry of data from various sources (PDFs, handwritten docs, images) into your database or system.
+                    </p>
+                  </div>
+                  <div className="p-5 rounded-xl border border-[#e6f6fa] shadow-sm">
+                    <h3 className="font-semibold text-[#0b3d64]">Data Cleaning & Validation</h3>
+                    <p className="mt-2 text-gray-600 text-sm">
+                      Identifying and correcting errors, removing duplicates, and standardizing data to ensure your database is reliable.
+                    </p>
+                  </div>
+                  <div className="p-5 rounded-xl border border-[#e6f6fa] shadow-sm">
+                    <h3 className="font-semibold text-[#0b3d64]">Document Digitization (OCR)</h3>
+                    <p className="mt-2 text-gray-600 text-sm">
+                      Converting physical documents, invoices, and forms into searchable, editable digital formats using modern OCR technology.
+                    </p>
+                  </div>
+                  <div className="p-5 rounded-xl border border-[#e6f6fa] shadow-sm">
+                    <h3 className="font-semibold text-[#0b3d64]">Data Processing & Formatting</h3>
+                    <p className="mt-2 text-gray-600 text-sm">
+                      Organizing, formatting, and processing data for reports, analysis, or migration between different systems.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Why choose us */}
+                <div className="mt-10">
+                  <h3 className="text-xl font-bold text-[#0b3d64]">Why choose our data entry operators?</h3>
+                  <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {[
+                      "Vetted for Accuracy & Typing Speed",
+                      "Trained in Excel, CRM & Databases",
+                      "Background-checked professionals",
+                      "Confidentiality & Data Security Focus",
+                    ].map((t) => (
+                      <li key={t} className="flex items-start gap-3 text-gray-700">
+                        <span className="mt-1 text-[#1a9bb9]">
+                          <Check size={18} />
+                        </span>
+                        <span>{t}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* --- UPDATED "HOW IT WORKS" SECTION --- */}
+                <div className="mt-10">
+                  <h3 className="text-xl font-bold text-[#0b3d64]">Our Data Project Workflow</h3>
+                  <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {/* Step 1 */}
+                    <div className="p-5 rounded-xl border border-[#e6f6fa] shadow-sm bg-white">
+                      <div className="flex items-center gap-3">
+                        <span className={`p-2 rounded-full ${accentBg} text-white`}>
+                          <Scan size={20} />
+                        </span>
+                        <h4 className="font-semibold text-lg text-[#0b3d64]">1. Scope & Setup</h4>
+                      </div>
+                      <p className="mt-3 text-gray-600 text-sm">
+                        We start with a detailed consultation to understand your data format, volume, and required output. We'll set up secure access and a clear project brief.
+                      </p>
+                    </div>
+                    {/* Step 2 */}
+                    <div className="p-5 rounded-xl border border-[#e6f6fa] shadow-sm bg-white">
+                      <div className="flex items-center gap-3">
+                        <span className={`p-2 rounded-full ${accentBg} text-white`}>
+                          <Database size={20} />
+                        </span>
+                        <h4 className="font-semibold text-lg text-[#0b3d64]">2. Execution & QA</h4>
+                      </div>
+                      <p className="mt-3 text-gray-600 text-sm">
+                        Our operators begin processing your data. We implement a dual-check system—peer review and automated validation—to ensure the highest level of accuracy.
+                      </p>
+                    </div>
+                    {/* Step 3 */}
+                    <div className="p-5 rounded-xl border border-[#e6f6fa] shadow-sm bg-white">
+                      <div className="flex items-center gap-3">
+                        <span className={`p-2 rounded-full ${accentBg} text-white`}>
+                          <CheckSquare size={20} />
+                        </span>
+                        <h4 className="font-semibold text-lg text-[#0b3d64]">3. Delivery & Review</h4>
+                      </div>
+                      <p className="mt-3 text-gray-600 text-sm">
+                        Your cleaned and formatted data is delivered securely in your desired format. We review the final output with you to ensure 100% satisfaction.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {/* ------------------------------------- */}
+
+              </div>
+
+              {/* Right column: contact card */}
+              <aside className="p-6 rounded-2xl border border-[#e6f6fa] shadow-sm">
+                <div className="flex items-center gap-3">
+                  <div className="w-14 h-14 rounded-lg flex items-center justify-center bg-white/5">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden>
+                      <rect width="24" height="24" rx="6" fill="#0b3d64" />
+                      <path d="M7 10h10M7 14h6" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Need Data Entry Help?</p>
+                    <p className="text-lg font-semibold text-[#0b3d64]">Contact our team</p>
+                  </div>
+                </div>
+
+                <div className="mt-6 space-y-3">
+                  <a
+                    href="tel:+911234567890"
+                    className=" w-full text-left inline-flex items-center gap-3 px-4 py-3 rounded-lg border border-[#e6f6fa] bg-white text-[#0b3d64] font-medium hover:bg-[#f8feff]"
+                  >
+                    <Phone size={16} /> +91 12345 67890
+                  </a>
+
+                  <a
+                    href="mailto:info@shyama-securities.com?subject=Data%20Entry%20Service%20Inquiry"
+                    className=" w-full text-left inline-flex items-center gap-3 px-4 py-3 rounded-lg border border-[#e6f6fa] bg-white text-[#0b3d64] font-medium hover:bg-[#f8feff]"
+                  >
+                    <Mail size={16} /> info@shyama-securities.com
+                  </a>
+                </div>
+
+                <div className="mt-6">
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl font-semibold text-white"
+                    style={{ background: "linear-gradient(90deg,#0b3d64 0%,#1a9bb9 100%)" }}
+                  >
+                    Get a Quote
+                  </a>
+                </div>
+
+                <div className="mt-6 text-xs text-gray-500">
+                  We provide project-based, temporary, and full-time operators — send details for a tailored quote.
+                </div>
+              </aside>
+            </motion.section>
+
+            {/* --- 3. "TRUSTED BY" SECTION UPDATED --- */}
+            <motion.section variants={item} className="mt-12">
+              <h3 className="text-xl font-bold text-[#0b3d64]">Trusted by</h3>
+              <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-6 items-center">
+                {trustedLogos.map((logo) => (
+                  <div 
+                    key={logo.alt} 
+                    className="p-4 h-16 rounded-lg border border-[#f1fbfd] flex items-center justify-center"
+                  >
+                    <img
+                      src={logo.src}
+                      alt={logo.alt}
+                      // --- LOGO SIZE INCREASED HERE ---
+                      className="max-h-14 w-auto object-contain " 
+                    />
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+            {/* ------------------------------------ */}
+
+            {/* FAQ */}
+            <motion.section variants={item} className="mt-12">
+              <h3 className="text-xl font-bold text-[#0b3d64]">Frequently asked questions</h3>
+              <div className="mt-4 space-y-4">
+                
+                <details className="p-4 border rounded-lg">
+                  <summary className="font-medium text-[#0b3d64] cursor-pointer">How do you ensure data accuracy?</summary>
+                  <p className="mt-2 text-gray-700">We use a multi-level approach, including skilled operators, double-entry processes where needed, and automated validation scripts to check for common errors and inconsistencies.</p>
+                </details>
+
+                <details className="p-4 border rounded-lg">
+                  <summary className="font-medium text-[#0b3d64] cursor-pointer">What about data security and confidentiality?</summary>
+                  <p className="mt-2 text-gray-700">All our operators sign strict non-disclosure agreements (NDAs). We use secure, encrypted channels for data transfer and can work within your VPN or remote desktop environment.</p>
+                </details>
+
+                <details className="p-4 border rounded-lg">
+                  <summary className="font-medium text-[#0b3d64] cursor-pointer">What formats can you work with?</summary>
+                  <p className="mt-2 text-gray-700">We can handle virtually any format, including handwritten documents, scanned PDFs, images (JPG, PNG), Excel/CSV files, and direct entry into web-based platforms or CRMs.</p>
+                </details>
+
+                <details className="p-4 border rounded-lg">
+                  <summary className="font-medium text-[#0b3d64] cursor-pointer">Can you handle large, ongoing projects?</summary>
+                  <p className="mt-2 text-gray-700">Absolutely. We can assign a dedicated team to your project and scale resources up or down based on your workload, ensuring timely completion.</p>
+                </details>
+
+              </div>
+            </motion.section>
+          </motion.div>
+        </main>
+
+        {/* Footer CTA */}
+        <footer className="bg-[#f8feff] border-t border-white/60">
+          <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+              <div className="text-sm text-gray-600">Ready to clean up your data?</div>
+              <div className="mt-2 text-lg font-semibold text-[#0b3d64]">Book our professional data operators today</div>
+            </div>
+
+            <div className="flex gap-3">
+              <a
+                href="tel:+911234567890"
+                className={`inline-flex items-center gap-2 px-5 py-3 rounded-2xl font-medium ${accentBg} ${accentBgHover} text-white`}
+              >
+                <Phone size={16} /> Call Now
+              </a>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl font-medium bg-white text-[#0b3d64] border border-[#e6f6fa]"
+              >
+                Contact Form
+              </Link>
+            </div>
+          </div>
+        </footer>
+      </div>
+      <Footer />
+    </>
+  );
+};
+
+export default DataEntryOperator;
